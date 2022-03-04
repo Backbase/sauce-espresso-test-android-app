@@ -1,0 +1,3 @@
+rootProject.name = 'sauce-espresso-test-android-app'
+
+include ':sauceapp'

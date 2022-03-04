@@ -1,0 +1,50 @@
+buildscript {
+    //region Dependency declarations
+    ext.versions = [
+            androidGradlePlugin  : '4.2.1',
+            espressoAccessibility: '3.4.0',
+            fragment             : '1.4.1',
+            junitAndroidX        : '1.1.3',
+            kotlin               : '1.5.31',
+    ]
+
+    ext.deps = [
+            androidGradlePlugin  : "com.android.tools.build:gradle:$versions.androidGradlePlugin",
+            espressoAccessibility: "androidx.test.espresso:espresso-accessibility:$versions.espressoAccessibility",
+            fragment             : "androidx.fragment:fragment-ktx:$versions.fragment",
+            fragmentTesting      : "androidx.fragment:fragment-testing:$versions.fragment",
+            junitAndroidX        : "androidx.test.ext:junit-ktx:$versions.junitAndroidX",
+    ]
+    //endregion
+
+    dependencies {
+        classpath deps.androidGradlePlugin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+ext {
+    projectVersions = [
+            minSdk     : 23,
+            targetSdk  : 31,
+            versionName: '1.0.0',
+    ]
+}
+
+allprojects { project ->
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

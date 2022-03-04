@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+version = projectVersions.versionName
+
+android {
+    compileSdkVersion projectVersions.targetSdk
+
+    buildFeatures {
+        buildConfig = false
+    }
+
+    defaultConfig {
+        applicationId "com.backbase.android.retail.sauceapp"
+        minSdkVersion projectVersions.minSdk
+        targetSdkVersion projectVersions.targetSdk
+        versionCode 1
+        versionName version
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    androidTestImplementation deps.junitAndroidX
+
+    debugImplementation deps.fragment
+    debugImplementation deps.fragmentTesting
+    debugImplementation deps.espressoAccessibility //needed to launch fragment in container
+
+}
